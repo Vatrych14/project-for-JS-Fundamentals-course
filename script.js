@@ -95,9 +95,12 @@ function updateTaskStats() {
     const completedTasks = tasks.filter((task) => task.completed).length;
     const totalTasks = tasks.length;
 
-    const completionPercentage = (completedTasks / totalTasks) * 100;
-
-    taskStats.textContent = `Completed tasks: ${completedTasks} / Total tasks: ${totalTasks} / (${completionPercentage.toFixed(2)}%)`;
+    if (totalTasks === 0) {
+        taskStats.textContent = " ";
+    } else {
+        const completionPercentage = (completedTasks / totalTasks) * 100;
+        taskStats.textContent = `Total tasks: ${totalTasks} / Completed tasks: ${completedTasks} / (${completionPercentage.toFixed(2)}%)`;
+    }
 }
 
 function getTasks() {
